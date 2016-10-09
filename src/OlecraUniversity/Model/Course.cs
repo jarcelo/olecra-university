@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ContosoUniv.Models
+namespace OlecraUniversity.Models
 {
     public class Course
     {
