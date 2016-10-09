@@ -1,15 +1,14 @@
 ﻿using OlecraUniversity.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OlecraUniversity.Data
 {
-    public class SchoolInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<SchoolContext>
+    public class DbInitializer
     {
-        protected override void Seed(SchoolContext context)
+        public static void Initialize(SchoolContext context)
         {
+            context
             var students = new List<Student>
             {
             new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
