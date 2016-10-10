@@ -17,7 +17,7 @@ namespace OlecraUniversity.WebWithIdentity.Data
         {
             modelBuilder.Entity<Student>().ToTable("Student");
             modelBuilder.Entity<Course>().ToTable("Course");
-            modelBuilder.Entity<Student>().ToTable("Student");
+            modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
         }
     }
 }
