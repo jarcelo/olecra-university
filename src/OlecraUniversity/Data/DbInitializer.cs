@@ -1,6 +1,7 @@
 ﻿using OlecraUniversity.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OlecraUniversity.Data
 {
@@ -8,8 +9,12 @@ namespace OlecraUniversity.Data
     {
         public static void Initialize(SchoolContext context)
         {
-            context
-            var students = new List<Student>
+            context.Database.EnsureCreated();
+            if (context.Students.Any())
+            {
+                return; //Db has been seeded
+            }
+            var students = new Student[]
             {
             new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
             new Student{FirstMidName="Meredith",LastName="Alonso",EnrollmentDate=DateTime.Parse("2002-09-01")},
@@ -20,10 +25,13 @@ namespace OlecraUniversity.Data
             new Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2003-09-01")},
             new Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2005-09-01")}
             };
-
-            students.ForEach(s => context.Students.Add(s));
+            foreach (Student s in students)
+            {
+                context.Students.Add(s);
+            }
             context.SaveChanges();
-            var courses = new List<Course>
+
+            var courses = new Course[]
             {
             new Course{CourseID=1050,Title="Chemistry",Credits=3,},
             new Course{CourseID=4022,Title="Microeconomics",Credits=3,},
@@ -33,9 +41,12 @@ namespace OlecraUniversity.Data
             new Course{CourseID=2021,Title="Composition",Credits=3,},
             new Course{CourseID=2042,Title="Literature",Credits=4,}
             };
-            courses.ForEach(s => context.Courses.Add(s));
+            foreach (Course c in courses)
+            {
+                context.Courses.Add(c);
+            }
             context.SaveChanges();
-            var enrollments = new List<Enrollment>
+            var enrollments = new Enrollment[]
             {
             new Enrollment{StudentID=1,CourseID=1050,Grade=Grade.A},
             new Enrollment{StudentID=1,CourseID=4022,Grade=Grade.C},
@@ -50,7 +61,10 @@ namespace OlecraUniversity.Data
             new Enrollment{StudentID=6,CourseID=1045},
             new Enrollment{StudentID=7,CourseID=3141,Grade=Grade.A},
             };
-            enrollments.ForEach(s => context.Enrollments.Add(s));
+            foreach (Enrollment e in enrollments)
+            {
+                context.Enrollments.Add(e);
+            }
             context.SaveChanges();
         }
     }
