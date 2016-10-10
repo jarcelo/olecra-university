@@ -122,19 +122,26 @@ namespace OlecraUniversity.WebWithIdentity.Models
         }
 
         // GET: Students/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            var student = await _context.Students
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+
             if (student == null)
             {
                 return NotFound();
             }
 
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] = "Delete failed. Please try again. ";
+            }
             return View(student);
         }
 
@@ -143,10 +150,27 @@ namespace OlecraUniversity.WebWithIdentity.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
+            var student = await _context.Students.
+                AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
             _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+
+            if (student == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            try
+            {
+                _context.Students.Remove(student);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception)
+            {
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
+           
         }
 
         private bool StudentExists(int id)
