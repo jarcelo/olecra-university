@@ -56,11 +56,20 @@ namespace OlecraUniversity.WebWithIdentity.Models
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EnrollmentDate,FirstMidName,LastName")] Student student)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(student);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _context.Add(student);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DbUpdateException)
+            {
+                // Log the error
+                ModelState.AddModelError("", "Unable to save changes. " +
+                    "Please try again.");
             }
             return View(student);
         }
