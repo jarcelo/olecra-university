@@ -2,14 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ContosoUniv.Models
+namespace OlecraUniversity.Models
 {
     public class Course
     {
-        // This attribute lets you enter the primary key for the course rather
-        // than the database generate it
+        // The DatabaseGenerated attribute lets the user enter the primary key for the course rather than having
+        // the database auto generate it
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(Name = "Number")]
+        [Display(Name = "Course ID")]
         public int CourseID { get; set; }
 
         [StringLength(50, MinimumLength = 3)]
@@ -18,12 +18,8 @@ namespace ContosoUniv.Models
         [Range(0, 5, ErrorMessage = "{0} valid input is from {1} to {2}")]
         public int Credits { get; set; }
 
-        // Foreign Key
-        public int DepartmentID { get; set; }
 
         // Navigation properties
-        public virtual Department Department { get; set; }
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
-        public virtual ICollection<Instructor> Instructors { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

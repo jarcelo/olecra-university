@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace ContosoUniv.Models
+namespace OlecraUniversity.Models
 {
     // Why abstract for base class?
     public abstract class Person

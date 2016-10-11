@@ -5,23 +5,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace ContosoUniv.Models
+namespace OlecraUniversity.Models
 {
-    public class Student : Person
+    public class Student
     {
         // Primary Key
-        //public int ID { get; set; }
+        public int ID { get; set; }
 
-        //[Required]
-        //[Display(Name = "Last Name")]
-        //[StringLength(50, ErrorMessage = "{0} cannot be longer than {1} characters")]
-        //public string LastName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        [StringLength(50, ErrorMessage = "{0} cannot be longer than {1} characters")]
+        public string LastName { get; set; }
 
-        //[Required]
-        //[Display(Name = "First Name")]
-        //[StringLength(50, ErrorMessage = "{0} cannot be longer than {1} characters")]
-        //[Column("FirstName")]
-        //public string FirstMidName { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
+        [StringLength(50, ErrorMessage = "{0} cannot be longer than {1} characters")]
+        [Column("FirstName")]
+        public string FirstMidName { get; set; }
 
         [Display(Name = "Enrollment Date")]
         [DataType(DataType.Date, ErrorMessage = "{0} must be in MM/DD/YYY format" )]
@@ -29,16 +29,8 @@ namespace ContosoUniv.Models
         public DateTime EnrollmentDate { get; set; }
 
         // Navigation Property 
-        // There's one to many relationship between Student and Enrollment entities.
+        // There's one to many relationship between Student and Enrollment
         public virtual ICollection<Enrollment> Enrollments { get; set; }
-
-        //[Display(Name = "Full Name")]
-        //public string  FullName {
-        //    get
-        //    {
-        //        return LastName + ", " + FirstMidName;
-        //    }
-        //}
     }
 
 }
