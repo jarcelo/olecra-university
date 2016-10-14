@@ -27,6 +27,15 @@ namespace OlecraUniversity.WebWithIdentity.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode =true)]
         public DateTime EnrollmentDate { get; set; }
 
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return LastName + ", " + FirstMidName;
+            }
+        }
+
         // Navigation Property 
         // There's one to many relationship between Student and Enrollment
         public virtual ICollection<Enrollment> Enrollments { get; set; }
