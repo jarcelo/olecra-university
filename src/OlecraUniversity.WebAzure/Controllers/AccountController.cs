@@ -40,7 +40,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/Login
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -50,7 +50,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // POST: /Account/Login
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
@@ -88,7 +88,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/Register
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -98,7 +98,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
@@ -140,7 +140,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
@@ -153,7 +153,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/ExternalLoginCallback
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
             if (remoteError != null)
@@ -195,7 +195,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl = null)
         {
@@ -228,7 +228,7 @@ namespace OlecraUniversity.WebAzure.Controllers
 
         // GET: /Account/ConfirmEmail
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -247,7 +247,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/ForgotPassword
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult ForgotPassword()
         {
             return View();
@@ -256,7 +256,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // POST: /Account/ForgotPassword
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
@@ -285,7 +285,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/ForgotPasswordConfirmation
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -294,7 +294,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/ResetPassword
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
         {
             return code == null ? View("Error") : View();
@@ -303,7 +303,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -329,7 +329,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/ResetPasswordConfirmation
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult ResetPasswordConfirmation()
         {
             return View();
@@ -338,7 +338,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/SendCode
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl = null, bool rememberMe = false)
         {
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -354,7 +354,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // POST: /Account/SendCode
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendCode(SendCodeViewModel model)
         {
@@ -392,7 +392,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // GET: /Account/VerifyCode
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<IActionResult> VerifyCode(string provider, bool rememberMe, string returnUrl = null)
         {
             // Require that the user has already logged in via username/password or external login
@@ -407,7 +407,7 @@ namespace OlecraUniversity.WebAzure.Controllers
         //
         // POST: /Account/VerifyCode
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> VerifyCode(VerifyCodeViewModel model)
         {
