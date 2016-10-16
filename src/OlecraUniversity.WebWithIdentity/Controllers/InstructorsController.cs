@@ -48,6 +48,9 @@ namespace OlecraUniversity.WebWithIdentity.Controllers
             if (courseID != null)
             {
                 ViewData["CourseID"] = courseID.Value;
+                _context.Enrollments
+                    .Include(i => i.Student)
+                    .Where(c => c.CourseID == courseID.Value).Load();
                 viewModel.Enrollments = viewModel.Courses.Where(
                     x => x.CourseID == courseID).Single().Enrollments;
             }
