@@ -1,12 +1,8 @@
-﻿
-using OlecraUniversity.WebAzure.Models;
-using System;
+﻿using System;
 using OlecraUniversity.WebAzure.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
 
-namespace OlecraUniversity.WebAzure.Data
+namespace OlecraUniversity.WebAzure.Models
 {
     public class DbInitializer
     {
