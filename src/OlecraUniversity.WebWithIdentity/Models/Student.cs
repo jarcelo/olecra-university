@@ -38,7 +38,7 @@ namespace OlecraUniversity.WebWithIdentity.Models
 
         // Navigation Property 
         // There's one to many relationship between Student and Enrollment
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 
 }
